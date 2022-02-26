@@ -24,6 +24,27 @@ campsiteRouter.route('/')
     res.end('Deleting all campsites');
 });
 
+campsiteRouter.route('/:campsiteId')
+//calling all sepcific campsite resources
+.all((req, res, next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    next();
+})
+.get((req, res) => {
+    res.end(`Will send all the ${req.params.campsiteId} to you`);
+})
+.post((req, res) => {
+    res.statusCode = 403;
+    res.end(`POST operations not supported on /campsites/id`);
+})
+.put((req, res) => {
+    res.end(`Will update ${req.params.campsiteId} with ${req.body.name} ${req.body}`);
+})
+.delete((req, res) => {
+    res.end(`Deleting campsite: ${req.params.campsiteId}`);
+});
+
 //now we have a single statement that handles all the routing end points for campsites
 //scalable organized way to handle the routing
 module.exports = campsiteRouter;
