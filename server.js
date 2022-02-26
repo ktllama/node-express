@@ -3,7 +3,8 @@ const express = require('express');
 const morgan = require('morgan');
 //installed morgan
 const campsiteRouter = require('./routes/campsiteRouter');
-const promotionsRouter = require('./routes/promotionsRouter');
+const promotionRouter = require('./routes/promotionRouter');
+const partnersRouter = require('./routes/partnersRouter');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -20,7 +21,8 @@ app.use(express.json());
 
 //provide root path for campsiteRouter here which is why we dont need to specify in campsiteRouter.js
 app.use('/campsites', campsiteRouter);
-app.use('/promotions', promotionsRouter);
+app.use('/promotion', promotionRouter);
+app.use('/partners', partnersRouter);
 
 app.use((req, res) => {
     res.statusCode = 200;
